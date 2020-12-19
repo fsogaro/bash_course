@@ -1,9 +1,29 @@
 # Instructions:
-#When the program starts the user should be asked how many files are in the current directory, and then the user should be prompted for a guess.
-#If the user's answer is incorrect the user should be advised that their guess was either too low or too high and then they should be prompted to try to guess again.
-#If the user's guess is correct then they should be congratulated and the program should end.
-#The program should not end until the user has entered the correct number of files in the current directory.
-#The program should be able to be run by entering bash guessinggame.sh into the console.
-#The program should contain at least one function, one loop, and one if statement.
-#The program should be more than 20 lines of code but less than 50 lines of code.
-echo "This is a work in progress"
+clear
+echo "Please enter the number of files you think are in the current directory. The number should be an integer"
+read guessed_number
+
+true_number=$(ls | wc -l) 
+echo "$guessed_number entered"
+echo "$true_number"
+
+if [[ ! $true_number -eq $guessed_number]]
+then 
+  echo "You entered"
+fi 
+
+
+while [[ ! $true_number -eq $guessed_number]] 
+do
+  if [[$true_number -gt $guessed_number]]
+  then
+    echo "You entered $guessed_number, which is too low"
+  else
+    echo "You entered $guessed_number, which is too high."
+  fi
+  echo "Please enter a new guess"
+  read guessed_number
+done
+
+echo "Well done! that is the right number! You won the game!"
+
