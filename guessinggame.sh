@@ -1,29 +1,22 @@
 # Instructions:
-clear
-echo "Please enter the number of files you think are in the current directory. The number should be an integer"
-read guessed_number
+echo "Please guess the number of files in the current directory:"
+read num_guess
 
-true_number=$(ls | wc -l) 
-echo "$guessed_number entered"
-echo "$true_number"
-
-if [[ ! $true_number -eq $guessed_number]]
-then 
-  echo "You entered"
-fi 
+files=( $(ls) )
+real_num=${#files[@]}
 
 
-while [[ ! $true_number -eq $guessed_number]] 
+while [[ ! $num_guess -eq real_num ]]
 do
-  if [[$true_number -gt $guessed_number]]
+  if [[ $num_guess -gt $real_num ]]
   then
-    echo "You entered $guessed_number, which is too low"
+    echo "The guess is too large"
   else
-    echo "You entered $guessed_number, which is too high."
+    echo "The guess is too small"
   fi
-  echo "Please enter a new guess"
-  read guessed_number
+  
+  echo "Guess agin:"
+  read num_guess
 done
 
-echo "Well done! that is the right number! You won the game!"
-
+echo "Well done! there are $real_num files in the current directory"
