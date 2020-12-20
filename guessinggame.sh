@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 clear
 echo "Please guess the number of files in the current directory:"
 read num_guess
